@@ -14,9 +14,17 @@ public class Usuario {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
+
+  @Column(nullable = false)
   String nombre;
-  String constrasena;
-  boolean activo;
+
+  @Column(unique = true,nullable = false)
+  String dni;
+
+  @Column(nullable = false)
+  String password;
+
+  boolean activo=true;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "rol_id",nullable = false)

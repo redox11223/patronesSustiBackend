@@ -24,12 +24,12 @@ public class MiUserDetailsService implements UserDetailsService {
     Usuario usuario =usuarioRepo.findByNombre(username).orElseThrow(()->
         new UsernameNotFoundException("Usuario no encontrado: " + username));
 
-    GrantedAuthority authority=new SimpleGrantedAuthority(usuario.getRoles().getNombre());
+    GrantedAuthority authority=new SimpleGrantedAuthority("ROLE_"+ usuario.getRoles().getNombre());
     List<GrantedAuthority> authorities=List.of(authority);
 
     return new User(
         usuario.getNombre(),
-        usuario.getConstrasena(),
+        usuario.getPassword(),
         usuario.isActivo(),
         true,
         true,
