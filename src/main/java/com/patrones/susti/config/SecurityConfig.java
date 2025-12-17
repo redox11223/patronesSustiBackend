@@ -14,6 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.List;
 
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -27,6 +31,7 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .csrf(csrf-> csrf.disable())
+        .cors(cors->cors.configurationSource(corsConfigurationSource()))
         .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/api/usuarios/**").hasRole("ADMIN")
@@ -47,4 +52,18 @@ public class SecurityConfig {
   public PasswordEncoder passwordEncoder(){
     return new BCryptPasswordEncoder();
   }
+
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    return request -> {
+      var cors = new CorsConfiguration();
+      cors.setAllowedOrigins(List.of("http://localhost:5173"));
+      cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+      cors.setAllowedHeaders(List.of("*"));
+      cors.setAllowCredentials(true);
+      return cors;
+    };
+  }
+
+
 }
