@@ -1,4 +1,4 @@
-package com.patrones.susti.auth;
+package com.patrones.susti.auth.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

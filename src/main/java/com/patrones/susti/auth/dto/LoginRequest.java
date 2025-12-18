@@ -1,4 +1,4 @@
-package com.patrones.susti.auth;
+package com.patrones.susti.auth.dto;
 
 public record LoginRequest(
     String username,

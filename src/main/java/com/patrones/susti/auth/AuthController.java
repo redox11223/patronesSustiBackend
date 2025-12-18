@@ -1,5 +1,8 @@
 package com.patrones.susti.auth;
 
+import com.patrones.susti.auth.dto.LoginRequest;
+import com.patrones.susti.auth.dto.LoginResponse;
+import com.patrones.susti.auth.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
