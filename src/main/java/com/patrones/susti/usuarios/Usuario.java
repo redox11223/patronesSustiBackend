@@ -1,14 +1,13 @@
 package com.patrones.susti.usuarios;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
 @Getter @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
   @Id

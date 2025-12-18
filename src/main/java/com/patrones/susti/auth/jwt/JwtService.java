@@ -1,4 +1,4 @@
-package com.patrones.susti.auth;
+package com.patrones.susti.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -21,7 +21,7 @@ public class JwtService {
             .setSubject(userDetails.getUsername())
             .claim("roles", userDetails.getAuthorities())
             .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + 5 * 60 * 1000))
+            .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
             .signWith(getKey(), SignatureAlgorithm.HS256)
             .compact();
   }
