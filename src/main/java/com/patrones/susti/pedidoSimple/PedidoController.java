@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PedidoController {
 
-  private final CalcPedidoMontoService montoService;
+  private final CalculoPrecioService montoService;
 
   @GetMapping
   public ResponseEntity<Pedido> obtenerPedidoEjemplo(){

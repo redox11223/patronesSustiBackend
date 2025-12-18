@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CalcPedidoMontoService {
+public class CalculoPrecioService {
 
   private final ObtenerEstrategiaService estrategiaService;
   private final PrecioConfigService configService;
