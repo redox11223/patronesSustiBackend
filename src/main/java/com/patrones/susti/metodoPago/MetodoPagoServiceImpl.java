@@ -3,6 +3,8 @@ package com.patrones.susti.metodoPago;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MetodoPagoServiceImpl implements MetodoPagoService{
@@ -10,17 +12,28 @@ public class MetodoPagoServiceImpl implements MetodoPagoService{
   private final MetodoPagoRepo metodoPagoRepo;
 
   @Override
+  public List<MetodoPago> obtenerTodosLosMetodosPago() {
+    return metodoPagoRepo.findAll();
+  }
+
+  @Override
   public MetodoPago crearMetodoPago(MetodoPago metodoPago) {
-    return null;
+    if(metodoPagoRepo.existsByNombre(metodoPago.getTipo())){
+      throw new RuntimeException("El metodo de pago ya existe");
+    }
+    return metodoPagoRepo.save(metodoPago);
   }
 
   @Override
   public MetodoPago obtenerMetodoPagoPorId(Long id) {
-    return null;
+    return metodoPagoRepo.findById(id).orElseThrow(()->
+            new RuntimeException("Metodo de pago no encontrado"));
   }
 
   @Override
   public MetodoPago actualizarMetodoPago(Long id, MetodoPago metodoPago) {
-    return null;
+    MetodoPago metodoPagoExistente = obtenerMetodoPagoPorId(id);
+    metodoPagoExistente.setTipo(metodoPago.getTipo());
+    return metodoPagoRepo.save(metodoPagoExistente);
   }
 }
