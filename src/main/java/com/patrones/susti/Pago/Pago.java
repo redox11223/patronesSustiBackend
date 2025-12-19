@@ -1,4 +1,4 @@
-package com.patrones.susti.metodoPago;
+package com.patrones.susti.Pago;
 
 
 import jakarta.persistence.*;
@@ -12,14 +12,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MetodoPago {
+public class Pago {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
+  Double monto;
+
   @Column(nullable = false)
-  String tipo;
+  String metodoPago;
 
   boolean activo=true;
 }

@@ -1,4 +1,4 @@
-package com.patrones.susti.metodoPago.Pasarelas;
+package com.patrones.susti.Pago.Pasarelas;
 
 public class PasarelaPlin implements PasarelaPago{
   @Override
