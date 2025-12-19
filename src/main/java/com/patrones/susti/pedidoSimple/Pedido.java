@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -17,12 +18,18 @@ public class Pedido {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long id;
-  String cliente;
+  private Long id;
+  private String cliente;
+
   @Enumerated(EnumType.STRING)
-  EstadoPedido estado=EstadoPedido.PENDIENTE;
-  Double monto;
-  Double montoFinal;
-  LocalDate fechaCreacion;
+  private EstadoPedido estado = EstadoPedido.PENDIENTE;
+
+  private Double monto;
+
+  private Double montoFinal;
+
+  @CreationTimestamp
+  @Column(updatable = false, nullable = false)
+  private LocalDate fechaCreacion;
 
 }

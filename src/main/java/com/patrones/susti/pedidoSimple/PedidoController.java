@@ -2,23 +2,24 @@ package com.patrones.susti.pedidoSimple;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pedidos")
 @RequiredArgsConstructor
 public class PedidoController {
 
-  private final CalculoPrecioService montoService;
+  private final PedidoService pedidoService;
+
+  @PostMapping
+  public ResponseEntity<Pedido> crearPedido(@RequestBody Pedido pedido) {
+    Pedido nuevoPedido = pedidoService.crearPedido(pedido);
+    return ResponseEntity.ok(nuevoPedido);
+  }
 
   @GetMapping
-  public ResponseEntity<Pedido> obtenerPedidoEjemplo(){
-    Pedido pedidoEjemplo=new Pedido();
-    pedidoEjemplo.setId(1L);
-    pedidoEjemplo.setMonto(100.0);
-    pedidoEjemplo.setMontoFinal(montoService.calcularPrecio(100.0));
+  public ResponseEntity<Pedido> obtenerPedidoEjemplo() {
+    Pedido pedidoEjemplo = pedidoService.obtenerPedidoPorId(1L);
     return ResponseEntity.ok(pedidoEjemplo);
   }
 }

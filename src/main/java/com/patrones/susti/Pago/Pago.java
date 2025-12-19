@@ -1,6 +1,7 @@
 package com.patrones.susti.Pago;
 
 
+import com.patrones.susti.pedidoSimple.Pedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,12 +17,16 @@ public class Pago {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long id;
+  private Long id;
 
-  Double monto;
+  private Double monto;
+
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "pedido_id", nullable = false)
+  private Pedido pedido;
 
   @Column(nullable = false)
-  String metodoPago;
+  private String metodoPago;
 
-  boolean activo=true;
+  private boolean activo = true;
 }
