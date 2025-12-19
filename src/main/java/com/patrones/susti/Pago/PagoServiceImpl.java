@@ -18,7 +18,7 @@ public class PagoServiceImpl implements PagoService {
 
   @Override
   public Pago crearMetodoPago(Pago pago) {
-    if(pagoRepo.existsByNombre(pago.getTipo())){
+    if (pagoRepo.existsByNombre(pago.getMetodoPago())) {
       throw new RuntimeException("El metodo de pago ya existe");
     }
     return pagoRepo.save(pago);
@@ -26,14 +26,14 @@ public class PagoServiceImpl implements PagoService {
 
   @Override
   public Pago obtenerMetodoPagoPorId(Long id) {
-    return pagoRepo.findById(id).orElseThrow(()->
+    return pagoRepo.findById(id).orElseThrow(() ->
             new RuntimeException("Metodo de pago no encontrado"));
   }
 
   @Override
   public Pago actualizarMetodoPago(Long id, Pago pago) {
     Pago pagoExistente = obtenerMetodoPagoPorId(id);
-    pagoExistente.setTipo(pago.getTipo());
+    pagoExistente.setMetodoPago(pago.getMetodoPago());
     return pagoRepo.save(pagoExistente);
   }
 }
