@@ -1,31 +1,35 @@
 package com.patrones.susti.usuarios;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Usuario {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Long id;
+  private Long id;
 
   @Column(nullable = false)
-  String nombre;
+  private String nombre;
 
-  @Column(unique = true,nullable = false)
-  String dni;
+  @Column(unique = true, nullable = false)
+  private String dni;
 
   @Column(nullable = false)
-  String password;
+  private String password;
 
-  boolean activo=true;
+  boolean activo = true;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "rol_id",nullable = false)
-  Rol roles;
+  @JoinColumn(name = "rol_id", nullable = false)
+  private Rol roles;
 }
