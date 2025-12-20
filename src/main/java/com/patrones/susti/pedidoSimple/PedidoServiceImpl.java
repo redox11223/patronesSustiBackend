@@ -18,7 +18,16 @@ public class PedidoServiceImpl implements PedidoService {
   }
 
   @Override
+  public void cancelarPedido(Long id) {
+    Pedido pedido = obtenerPedidoPorId(id);
+    pedido.setEstado(EstadoPedido.CANCELADO);
+    pedidoRepo.save(pedido);
+  }
+
+  @Override
   public Pedido obtenerPedidoPorId(Long id) {
     return pedidoRepo.findById(id).orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
   }
+
+
 }

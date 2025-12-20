@@ -23,4 +23,10 @@ public class PedidoController {
     Pedido pedidoEjemplo = pedidoService.obtenerPedidoPorId(1L);
     return ResponseEntity.ok(pedidoEjemplo);
   }
+
+  @PutMapping("/{id}/cancelar")
+  public ResponseEntity<Void> cancelarPedido(@PathVariable Long id) {
+    pedidoService.cancelarPedido(id);
+    return ResponseEntity.noContent().build();
+  }
 }
