@@ -12,6 +12,6 @@ public class PrecioDinamico implements PrecioEstrategia {
 
   @Override
   public Double calcularPrecio(Double monto) {
-    return monto * (1 + precioConfig.obtenerPrecioConfig().getFactorDinamico() / 100);
+    return monto * precioConfig.obtenerPrecioConfig().getFactorDinamico();
   }
 }
