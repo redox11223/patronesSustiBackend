@@ -28,5 +28,5 @@ public class Pago {
   @Column(nullable = false)
   private String metodoPago;
 
-  private boolean activo = true;
+  private Boolean activo = true;
 }

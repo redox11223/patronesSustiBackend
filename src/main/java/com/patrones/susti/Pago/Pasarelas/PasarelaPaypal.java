@@ -1,10 +1,11 @@
 package com.patrones.susti.Pago.Pasarelas;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-public class PasarelaPaypal implements PasarelaPago{
-
+@Component
+public class PasarelaPaypal implements PasarelaPago {
   private final PaypalService paypalService;
 
   @Override

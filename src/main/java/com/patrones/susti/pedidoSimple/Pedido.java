@@ -22,6 +22,7 @@ public class Pedido {
   private String cliente;
 
   @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
   private EstadoPedido estado = EstadoPedido.PENDIENTE;
 
   private Double monto;
