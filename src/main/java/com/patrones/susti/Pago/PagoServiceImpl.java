@@ -18,7 +18,7 @@ public class PagoServiceImpl implements PagoService {
 
   @Override
   public Pago crearMetodoPago(Pago pago) {
-    if (pagoRepo.existsByNombre(pago.getMetodoPago())) {
+    if (pagoRepo.existsByMetodoPago(pago.getMetodoPago())) {
       throw new RuntimeException("El metodo de pago ya existe");
     }
     return pagoRepo.save(pago);
