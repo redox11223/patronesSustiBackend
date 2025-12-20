@@ -1,8 +1,15 @@
 package com.patrones.susti.Pago.Pasarelas;
 
-public class PasarelaPlin implements PasarelaPago{
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@RequiredArgsConstructor
+@Component
+public class PasarelaPlin implements PasarelaPago {
+  private final PlinService plinService;
+
   @Override
   public boolean procesarPago(Double monto) {
-    return false;
+    return plinService.procesarPago(monto);
   }
 }

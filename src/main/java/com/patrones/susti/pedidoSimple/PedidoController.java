@@ -1,6 +1,7 @@
 package com.patrones.susti.pedidoSimple;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class PedidoController {
   @PostMapping
   public ResponseEntity<Pedido> crearPedido(@RequestBody Pedido pedido) {
     Pedido nuevoPedido = pedidoService.crearPedido(pedido);
-    return ResponseEntity.ok(nuevoPedido);
+    return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPedido);
   }
 
   @GetMapping

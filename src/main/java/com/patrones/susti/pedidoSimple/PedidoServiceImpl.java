@@ -12,6 +12,7 @@ public class PedidoServiceImpl implements PedidoService {
 
   @Override
   public Pedido crearPedido(Pedido pedido) {
+    pedido.setEstado(EstadoPedido.PENDIENTE);
     pedido.setMontoFinal(calculoPrecioService.calcularPrecio(pedido.getMonto()));
     return pedidoRepo.save(pedido);
   }
