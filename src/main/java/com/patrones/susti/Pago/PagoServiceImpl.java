@@ -21,6 +21,9 @@ public class PagoServiceImpl implements PagoService {
   public Pago procesarPago(Pago pago) {
     PasarelaPago pasarelaPago = obtenerPasarelaService.obtenerPasarela(pago.getMetodoPago());
     Pedido pedido = pago.getPedido();
+    if (!pedido.getEstado().equals(EstadoPedido.PENDIENTE)) {
+      throw new IllegalArgumentException("Solo se pueden pagar pedidos en estado PENDIENTE");
+    }
     boolean exito = pasarelaPago.procesarPago(pedido.getMontoFinal());
     if (!exito) {
       throw new IllegalArgumentException("Pago no pudo ser procesado");
