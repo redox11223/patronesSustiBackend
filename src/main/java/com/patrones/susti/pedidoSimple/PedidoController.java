@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/pedidos")
 @RequiredArgsConstructor
@@ -18,10 +20,15 @@ public class PedidoController {
     return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPedido);
   }
 
-  @GetMapping
-  public ResponseEntity<Pedido> obtenerPedidoEjemplo() {
-    Pedido pedidoEjemplo = pedidoService.obtenerPedidoPorId(1L);
+  @GetMapping("/{id}")
+  public ResponseEntity<Pedido> obtenerPedido(@PathVariable Long id) {
+    Pedido pedidoEjemplo = pedidoService.obtenerPedidoPorId(id);
     return ResponseEntity.ok(pedidoEjemplo);
+  }
+
+  public ResponseEntity<List<Pedido>> obtenerTodosLosPedidos() {
+    List<Pedido> pedidos = pedidoService.obtenerTodosLosPedidos();
+    return ResponseEntity.ok().body(pedidos);
   }
 
   @PutMapping("/{id}/cancelar")

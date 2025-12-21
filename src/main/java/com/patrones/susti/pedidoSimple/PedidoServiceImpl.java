@@ -4,6 +4,8 @@ import com.patrones.susti.precios.CalculoPrecioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PedidoServiceImpl implements PedidoService {
@@ -15,6 +17,11 @@ public class PedidoServiceImpl implements PedidoService {
     pedido.setEstado(EstadoPedido.PENDIENTE);
     pedido.setMontoFinal(calculoPrecioService.calcularPrecio(pedido.getMonto()));
     return pedidoRepo.save(pedido);
+  }
+
+  @Override
+  public List<Pedido> obtenerTodosLosPedidos() {
+    return pedidoRepo.findAll();
   }
 
   @Override
