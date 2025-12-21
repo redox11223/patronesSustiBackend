@@ -20,7 +20,7 @@ public class PagoServiceImpl implements PagoService {
   @Override
   public Pago procesarPago(Pago pago) {
     PasarelaPago pasarelaPago = obtenerPasarelaService.obtenerPasarela(pago.getMetodoPago());
-    Pedido pedido = pago.getPedido();
+    Pedido pedido = pedidoRepo.findById(pago.getPedido().getId()).orElseThrow(() -> new IllegalArgumentException("Pedido no encontrado"));
     if (!pedido.getEstado().equals(EstadoPedido.PENDIENTE)) {
       throw new IllegalArgumentException("Solo se pueden pagar pedidos en estado PENDIENTE");
     }
