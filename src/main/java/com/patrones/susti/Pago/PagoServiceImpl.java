@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PagoServiceImpl implements PagoService {
@@ -35,5 +37,10 @@ public class PagoServiceImpl implements PagoService {
     pago.setActivo(false);
 
     return pagoRepo.save(pago);
+  }
+
+  @Override
+  public List<Pago> obtenerPagos() {
+    return pagoRepo.findAll();
   }
 }
