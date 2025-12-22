@@ -1,22 +1,47 @@
 # Sistema de Gestión de Pedidos
 
-## Instalación
+## Instalación y Ejecución
+## 1. Pasos con Docker
+### 1.1 Clona el repositorio
+```bash
+  git clone https://github.com/redox11223/patronesSustiBackend
+```
 
-### 1. Clonar el repositorio
+### 1.2 Ejecución de la aplicacion
+Las imagenes tanto del frontend como el backend estan subidas a Docker Hub, el archivo docker-compose
+indica los pasos , la descarga de las imagenes, la ejecucion y comunicacion de los contenedores
+. Con el siguiente comando podras ejecutar la aplicacion.
+```bash
+  docker-compose up -d
+```
+
+### 1.3 Ingresa desde el navegador a la siguiente Url:
+```bash
+  http://localhost:80
+```
+
+### 1.4 Usa estas credenciales para probar el sistema
+```bash
+  "Nombre de usuario": "admin",
+  "Contraseña": "admin123"
+```
+
+## 2. Instalacióm Normal
+### 2.1. Clonar el repositorio
 
 ```bash
   git clone https://github.com/redox11223/patronesSustiBackend
 ```
 
-### 2. Configurar la Base de Datos
+### 2.2. Configurar la Base de Datos
 
-#### Crear la base de datos PostgreSQL en Dbeaver o similar:
+ Crea la base de datos PostgreSQL en Dbeaver o similar:
 
 ```sql
 CREATE DATABASE susti;
 ```
 
-#### Configurar las credenciales:
+### 2.3 Configurar las credenciales:
 
 Edita el archivo `src/main/resources/application.properties` con tus credenciales de PostgreSQL:
 
@@ -26,13 +51,13 @@ spring.datasource.username=tu_usuario
 spring.datasource.password=tu_contraseña
 ```
 
-### 4. Compilar el proyecto
+### 2.4. Compilar el proyecto
 
 ```bash
  ./mvnw clean install
 ```
 
-## Ejecución
+### 2.5. Ejecución
 
 ```bash
  ./mvnw spring-boot:run
