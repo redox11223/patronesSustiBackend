@@ -26,6 +26,7 @@ public class PedidoController {
     return ResponseEntity.ok(pedidoEjemplo);
   }
 
+  @GetMapping
   public ResponseEntity<List<Pedido>> obtenerTodosLosPedidos() {
     List<Pedido> pedidos = pedidoService.obtenerTodosLosPedidos();
     return ResponseEntity.ok().body(pedidos);

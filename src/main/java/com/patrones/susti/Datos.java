@@ -2,6 +2,7 @@ package com.patrones.susti;
 
 import com.patrones.susti.pedidoSimple.Pedido;
 import com.patrones.susti.pedidoSimple.PedidoRepo;
+import com.patrones.susti.precios.CalculoPrecioService;
 import com.patrones.susti.precios.precioConfig.EstrategiaPrecio;
 import com.patrones.susti.precios.precioConfig.PrecioConfig;
 import com.patrones.susti.precios.precioConfig.PrecioConfigRepo;
@@ -23,6 +24,7 @@ public class Datos implements CommandLineRunner {
   private final PasswordEncoder passwordEncoder;
   private final PrecioConfigRepo precioConfigRepo;
   private final PedidoRepo pedidoRepo;
+  private final CalculoPrecioService calculoPrecioService;
 
   @Override
   public void run(String... args) throws Exception {
@@ -64,6 +66,7 @@ public class Datos implements CommandLineRunner {
       Pedido pedido = new Pedido();
       pedido.setCliente("Miguel");
       pedido.setMonto(100.0);
+      pedido.setMontoFinal(calculoPrecioService.calcularPrecio(100.0));
       pedidoRepo.save(pedido);
     }
 
