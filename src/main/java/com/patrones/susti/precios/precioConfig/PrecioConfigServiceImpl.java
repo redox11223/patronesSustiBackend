@@ -23,7 +23,6 @@ public class PrecioConfigServiceImpl implements PrecioConfigService {
     precioConfig.setEstrategia(nuevaConfig.getEstrategia());
     precioConfig.setFactorDinamico(nuevaConfig.getFactorDinamico());
     precioConfig.setDescuentoPorcentaje(nuevaConfig.getDescuentoPorcentaje());
-
     return precioConfigRepo.save(precioConfig);
   }
 }
